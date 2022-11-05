@@ -7,7 +7,7 @@ import * as React from "react";
 export default function App() {
   return (
     <>
-      <div className="columns">
+      <div className="page">
         <div className="landing">
           <header className="header">
             <picture>
@@ -48,7 +48,9 @@ export default function App() {
             <p>Uncollateralized loan in just a minute</p>
           </div>
           <div className="button-container">
-            <button>Log in LENS / Metamask / Wallet connect</button>
+            <button id="coolButton">
+              Log in LENS / Metamask / Wallet connect
+            </button>
           </div>
         </div>
         <div className="footer"></div>
