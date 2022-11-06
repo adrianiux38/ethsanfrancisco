@@ -41,6 +41,9 @@ const wagmiClient = createClient({
   provider,
 });
 
+const quickNodeEndpoint =
+  "https://serene-damp-vineyard.discover.quiknode.pro/fbb2c45c83ceb2b39a1b9aed747ca529a5f013cf/";
+
 async function CircularIndeterminate() {
   document.getElementById("loader").style.display = "none";
 }
@@ -80,6 +83,23 @@ function App() {
       alert("Error signing in");
     }
   };
+
+  async function getBalance() {
+    fetch(quickNodeEndpoint, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        id: 67,
+        jsonrpc: "2.0",
+        method: "qn_getWalletTokenBalance",
+        params: {
+          wallet: "0x75fE1c2e7D4BD59979924279Bae64aCEa2602BdD", // for testing/demo
+        },
+      }),
+    }).then((response) => JSON.stringify(response));
+  }
 
   async function handleSubmit(event) {
     event.preventDefault();
