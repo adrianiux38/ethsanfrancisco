@@ -6,11 +6,10 @@ export const WalletButton = () => {
       style={{
         display: "flex",
         alignItems: "center",
-        justifyContent: "center"
+        justifyContent: "center",
       }}
     >
-      <ConnectButton/>
+      <ConnectButton />
     </div>
   );
 };
-

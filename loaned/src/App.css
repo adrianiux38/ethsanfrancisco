@@ -1,20 +1,232 @@
 .App {
   text-align: center;
 }
+.main {
+  display: "flex";
+  width: "100vw";
+  height: "6vh";
+  align-content: "center";
+  justify-content: "center";
+  background-color: hwb(182 39% 0%);
+}
+.borrowPage {
+  display: flex;
+  flex-direction: column;
+  background-color: rgba(223, 255, 28, 1);
+}
+.repayPage {
+  display: flex;
+  flex-direction: column;
+  background-color: cyan;
+}
+#myNavBar {
+  background-color: #61dafb;
+}
+.navbar {
+  border-bottom: solid 1px #ebebeb;
+}
+.bottom-tab-nav {
+  border-top: solid 1px #ebebeb;
+}
+.nav-link,
+.bottom-nav-link {
+  color: #55575b;
+}
+.bottom-nav-link.active {
+  color: #922c88;
+}
+.bottom-tab-label {
+  font-size: 12px;
+}
+.div {
+  display: flex;
+}
+@media (max-width: 999px) {
+  .div {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+.fade-in {
+  transition: opacity 1s ease;
+}
+.fade-out {
+  opacity: 0;
+  transition: opacity 1s ease;
+}
+.column {
+  display: flex;
+  flex-direction: column;
+  line-height: normal;
+  width: calc(100%);
+  margin-left: 0px;
+}
+@media (max-width: 999px) {
+  .column {
+    width: 100%;
+  }
+}
+.landing {
+  display: flex;
+  max-width: 263.8399658203125px;
+  justify-content: center;
+  align-items: center;
+  margin-top: 50px;
+  flex-direction: row;
+  margin-left: auto;
+  margin-right: auto;
+}
+.header {
+  display: flex;
+  position: relative;
+  min-width: 20px;
+  min-height: 20px;
+  max-width: 14px;
+  width: 14px;
+}
+@media (max-width: 640px) {
+  .header {
+    margin-right: auto;
+  }
+}
+.image {
+  object-fit: contain;
+  object-position: center;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+}
+.image-sizer {
+  width: 100%;
+  padding-top: 142.85714285714286%;
+  pointer-events: none;
+  font-size: 0;
+}
+.logo {
+  margin-left: 8.66340160369873px;
+  align-content: "center";
+  justify-content: "center";
+}
+@media (max-width: 640px) {
+  .logo {
+    margin-left: auto;
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-right: auto;
+    padding-left: 10px;
+  }
+}
+.body {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  margin-top: 20px;
+  height: 200px;
+}
+@media (max-width: 640px) {
+  .body {
+    height: auto;
+    padding-bottom: 30px;
+  }
+}
+.runner {
+  display: flex;
+  position: relative;
+  min-width: 20px;
+  min-height: 20px;
+  max-width: 186px;
+  width: 186px;
+  margin-top: 50px;
+}
+@media (max-width: 640px) {
+  .runner {
+    margin-left: auto;
+    margin-right: auto;
+    padding-bottom: 50px;
+  }
+}
+.image-sizer-2 {
+  width: 100%;
+  padding-top: 82.79569892473118%;
+  pointer-events: none;
+  font-size: 0;
+}
+.uncollateralized-loan-in-just {
+  max-width: 250px;
+  color: rgba(11, 10, 10, 1);
+  font-size: 25.202619552612305px;
+  line-height: 120.00000476837158%;
+  letter-spacing: 0%;
+  text-align: center;
+  font-family: "IBM Plex Sans", sans-serif;
+}
+@media (max-width: 640px) {
+  .uncollateralized-loan-in-just {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+.footer {
+  margin-bottom: 200px;
+}
+.center-container {
+  min-width: 150px;
+  max-width: 300px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 0px;
+}
+.button-container {
+  min-width: 150px;
+  max-width: 300px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 25px;
+}
+.info {
+  margin-top: 0px;
+  margin: bottom 0px;
+}
+.title {
+  margin-top: 50px;
+  margin: bottom 0px;
+}
+
+#coolButton {
+  background-color: transparent;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  margin-bottom: 10px;
+  height: 200px;
+  width: 30px;
+  max-width: 300px;
+  object-position: center;
+  color: rgba(0, 0, 0, 1);
+  font-size: 14px;
+  line-height: 150%;
+  text-align: center;
+  font-family: "Roboto", sans-serif;
+  height: auto;
+  width: auto;
+  border-radius: 12px;
+}
 
 .App-logo {
   height: 40vmin;
   pointer-events: none;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
 .App-header {
-  background-color: #282c34;
+  background-color: #dfff1c;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
