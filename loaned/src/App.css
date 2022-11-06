@@ -186,6 +186,16 @@
   margin-right: auto;
   margin-top: 0px;
 }
+.world-container {
+  min-width: 150px;
+  max-width: 300px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 3%;
+}
 .button-container {
   min-width: 150px;
   max-width: 300px;
@@ -194,7 +204,7 @@
   position: relative;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 25px;
+  margin-top: 20px;
 }
 .info {
   margin-top: 0px;

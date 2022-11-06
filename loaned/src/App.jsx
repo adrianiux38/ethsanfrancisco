@@ -8,13 +8,9 @@ import "./App.css";
 import { useAccount } from "wagmi";
 import { request } from "graphql-request";
 import FadeIn from "./FadeIn";
-import Button from "@mui/material/Button";
-import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
-import CircularProgress from "@mui/material/CircularProgress";
-import Modal from "@mui/material/Modal";
 import TextField from "@mui/material/TextField";
 import "@rainbow-me/rainbowkit/styles.css";
+import { WorldIDWidget } from "@worldcoin/id";
 import { getDefaultWallets, RainbowKitProvider } from "@rainbow-me/rainbowkit";
 import { chain, configureChains, createClient, WagmiConfig } from "wagmi";
 import { alchemyProvider } from "wagmi/providers/alchemy";
@@ -131,9 +127,10 @@ function App() {
                   style={{
                     display: "flex",
                     flexDirection: "column",
-                    marginTop: "20%",
+                    marginTop: "18%",
                     alignContent: "center",
-                    paddingBottom: "20%",
+                    justifyContent: "center",
+                    paddingBottom: "10%",
                     paddingTop: "7vh",
                   }}
                 >
@@ -153,32 +150,52 @@ function App() {
                   <FadeIn delay={250}>
                     <WalletButton />
                   </FadeIn>
-                  <div className="info">
-                    <p
-                      style={{
-                        display: "flex",
-                        width: "100vw",
-                        marginTop: "10%",
-                        alignContent: "center",
-                        justifyContent: "center",
-                      }}
-                    >
-                      {" "}
-                      Login using Lens:
-                    </p>
-                  </div>
+                  <FadeIn delay={350}>
+                    <div className="world-container">
+                      <WorldIDWidget
+                        actionId="wid_staging_1d4d04fb803c86ad2da503fc8dbdf914" // obtain this from developer.worldcoin.org
+                        signal="my_signal"
+                        enableTelemetry
+                        onSuccess={(verificationResponse) =>
+                          console.log(verificationResponse)
+                        } // pass the proof to the API or your smart contract
+                        onError={(error) => console.error(error)}
+                        debug={true} // to aid with debugging, remove in production
+                      />
+                    </div>
+                  </FadeIn>
+
+                  <FadeIn delay={450}>
+                    <div className="info">
+                      <p
+                        style={{
+                          display: "flex",
+                          width: "100vw",
+                          marginTop: "10%",
+                          alignContent: "center",
+                          justifyContent: "center",
+                        }}
+                      >
+                        {" "}
+                        Login using Lens:
+                      </p>
+                    </div>
+                  </FadeIn>
                   <div className="center-container">
                     <form onSubmit={handleSubmit}>
-                      <TextField
-                        id="handleInput"
-                        label="lens handle"
-                        variant="standard"
-                      />
-                      <div className="button-container">
-                        <SuccessModal />
-                      </div>
+                      <FadeIn delay={550}>
+                        <TextField
+                          id="handleInput"
+                          label="lens handle"
+                          variant="standard"
+                        />
+                      </FadeIn>
+                      <FadeIn delay={450}>
+                        <div className="button-container">
+                          <SuccessModal />
+                        </div>
+                      </FadeIn>
                     </form>
-                    <p style={{ fontSize: "10px" }}>{submited}</p>
                   </div>
                 </div>
                 <BottomNavigation
@@ -297,7 +314,7 @@ export function Page2() {
               fontWeight: "bold",
             }}
           >
-            <p>-131$APE</p>
+            <p>-87 MATIC</p>
           </div>
         </div>
         <img

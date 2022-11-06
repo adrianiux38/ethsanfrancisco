@@ -35,14 +35,11 @@ const modalStyle = {
 export default function SuccessModal() {
   const [open, setOpen] = React.useState(false);
   const handleOpen = async () => {
+    setTimeout(() => setShowModal(true), 4000);
     setOpen(true);
   };
   const handleClose = () => setOpen(false);
   let [showModal, setShowModal] = React.useState(false);
-
-  useEffect(() => {
-    setTimeout(() => setShowModal(true), 5000);
-  }, []);
 
   return (
     <div className="button-container">
