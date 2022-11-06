@@ -12,7 +12,6 @@
 .borrowPage {
   display: flex;
   flex-direction: column;
-  background-color: rgba(223, 255, 28, 1);
 }
 .repayPage {
   display: flex;
@@ -88,6 +87,12 @@
   .header {
     margin-right: auto;
   }
+}
+.modal-container {
+  width: "100vw";
+  display: flex;
+  align-content: center;
+  justify-content: center;
 }
 .image {
   object-fit: contain;

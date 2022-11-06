@@ -5,8 +5,12 @@ import "./App.css";
 //import ComponentButton from './components/walletConnect';
 import { useAccount } from "wagmi";
 import { request } from "graphql-request";
-import Stack from "@mui/material/Stack";
+import FadeIn from "./FadeIn";
 import Button from "@mui/material/Button";
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
+import CircularProgress from "@mui/material/CircularProgress";
+import Modal from "@mui/material/Modal";
 import TextField from "@mui/material/TextField";
 import "@rainbow-me/rainbowkit/styles.css";
 import { getDefaultWallets, RainbowKitProvider } from "@rainbow-me/rainbowkit";
@@ -15,6 +19,11 @@ import { alchemyProvider } from "wagmi/providers/alchemy";
 import { publicProvider } from "wagmi/providers/public";
 import { WalletButton } from "./components/ComponentButton";
 import { lensProfileData } from "./utils/lensProfileData";
+import BottomNavigation from "@mui/material/BottomNavigation";
+import BottomNavigationAction from "@mui/material/BottomNavigationAction";
+import CallReceivedIcon from "@mui/icons-material/CallReceived";
+import CallMadeIcon from "@mui/icons-material/CallMade";
+import SuccessModal from "./components/successModal";
 
 //import LensLogin from './components/LensLogin'
 
@@ -34,6 +43,10 @@ const wagmiClient = createClient({
   provider,
 });
 
+async function CircularIndeterminate() {
+  document.getElementById("loader").style.display = "none";
+}
+
 async function generateChallenge(address) {
   const API_URL = "https://api.lens.dev/";
   const dataChallenge = await request(
@@ -48,6 +61,7 @@ function App() {
   const address = data.address;
   const connected = data.isConnected;
   const [submited, changeStatus] = useState("");
+  const [value, setValue] = React.useState(0);
 
   const verifyData = async () => {
     console.log(data);
@@ -84,82 +98,108 @@ function App() {
     <WagmiConfig client={wagmiClient}>
       <RainbowKitProvider chains={chains}>
         <div className="main">
-          <div
-            style={{
-              display: "flex",
-              width: "100vw",
-              height: "6vh",
-              alignContent: "center",
-              marginLeft: "4vw",
-              justifyContent: "center",
-              backgroundColor: "transparent",
-            }}
-          >
-            <img
-              src={logo}
-              style={{
-                width: "200px",
-                height: "80px",
-                marginTop: "20%",
-                display: "flex",
-                backgroundColor: "transparent",
-              }}
-              alt="logo"
-            />
-          </div>
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              marginTop: "20%",
-              alignContent: "center",
-              paddingBottom: "20px",
-              paddingTop: "7vh",
-            }}
-          >
-            {/* <ComponentButton style={{display:'flex', paddingRight:'40px', marginRight:'60px'}}/>*/}
-            <h1
-              style={{
-                display: "flex",
-                width: "100vw",
-                marginTop: "6%",
-                marginBottom: "10%",
+          <div id="wrapper">
+            <Box
+              id="loader"
+              sx={{
                 justifyContent: "center",
+                alignContent: "center",
+                display: "none",
               }}
-            >
-              {" "}
-              Ask for your first loan:
-            </h1>
-            <WalletButton />
-            <div className="info">
-              <p
+            ></Box>
+            ;
+            <FadeIn>
+              <div
                 style={{
                   display: "flex",
                   width: "100vw",
-                  marginTop: "10%",
+                  height: "6vh",
                   alignContent: "center",
+                  marginLeft: "4vw",
                   justifyContent: "center",
+                  backgroundColor: "transparent",
                 }}
               >
-                {" "}
-                Login using Lens:
-              </p>
-            </div>
-            <div className="center-container">
-              <form onSubmit={handleSubmit}>
-                <TextField
-                  id="handleInput"
-                  label="lens handle"
-                  variant="standard"
+                <img
+                  src={logo}
+                  style={{
+                    width: "200px",
+                    height: "80px",
+                    marginTop: "20%",
+                    display: "flex",
+                    backgroundColor: "transparent",
+                  }}
+                  alt="logo"
                 />
-                <div className="button-container">
-                  <Button variant="outlined" type="submit">
-                    Submit
-                  </Button>
+              </div>
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  marginTop: "20%",
+                  alignContent: "center",
+                  paddingBottom: "20%",
+                  paddingTop: "7vh",
+                }}
+              >
+                {/* <ComponentButton style={{display:'flex', paddingRight:'40px', marginRight:'60px'}}/>*/}
+                <h1
+                  style={{
+                    display: "flex",
+                    width: "100vw",
+                    marginTop: "6%",
+                    marginBottom: "10%",
+                    justifyContent: "center",
+                  }}
+                >
+                  {" "}
+                  Ask for your first loan:
+                </h1>
+                <FadeIn delay={250}>
+                  <WalletButton />
+                </FadeIn>
+                <div className="info">
+                  <p
+                    style={{
+                      display: "flex",
+                      width: "100vw",
+                      marginTop: "10%",
+                      alignContent: "center",
+                      justifyContent: "center",
+                    }}
+                  >
+                    {" "}
+                    Login using Lens:
+                  </p>
                 </div>
-              </form>
-              <p style={{ fontSize: "10px" }}>{submited}</p>
-            </div>
+                <div className="center-container">
+                  <form onSubmit={handleSubmit}>
+                    <TextField
+                      id="handleInput"
+                      label="lens handle"
+                      variant="standard"
+                    />
+                    <div className="button-container">
+                      <SuccessModal />
+                    </div>
+                  </form>
+                  <p style={{ fontSize: "10px" }}>{submited}</p>
+                </div>
+              </div>
+              <BottomNavigation
+                showLabels
+                value={value}
+                onChange={(event, newValue) => {
+                  setValue(newValue);
+                }}
+              >
+                <BottomNavigationAction
+                  label="Borrow"
+                  icon={<CallReceivedIcon />}
+                />
+                <BottomNavigationAction label="Repay" icon={<CallMadeIcon />} />
+              </BottomNavigation>
+            </FadeIn>
           </div>
         </div>
       </RainbowKitProvider>
