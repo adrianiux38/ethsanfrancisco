@@ -1,10 +1,34 @@
 .App {
   text-align: center;
 }
-.page {
+.borrowPage {
   display: flex;
   flex-direction: column;
   background-color: rgba(223, 255, 28, 1);
+}
+.repayPage {
+  display: flex;
+  flex-direction: column;
+  background-color: cyan;
+}
+#myNavBar {
+  background-color: #61dafb;
+}
+.navbar {
+  border-bottom: solid 1px #ebebeb;
+}
+.bottom-tab-nav {
+  border-top: solid 1px #ebebeb;
+}
+.nav-link,
+.bottom-nav-link {
+  color: #55575b;
+}
+.bottom-nav-link.active {
+  color: #922c88;
+}
+.bottom-tab-label {
+  font-size: 12px;
 }
 .div {
   display: flex;
