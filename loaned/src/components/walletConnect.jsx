@@ -3,11 +3,12 @@ import { getDefaultWallets, RainbowKitProvider } from "@rainbow-me/rainbowkit";
 import { chain, configureChains, createClient, WagmiConfig } from "wagmi";
 import { alchemyProvider } from "wagmi/providers/alchemy";
 import { publicProvider } from "wagmi/providers/public";
-import { WalletButton } from "./componentButton";
+import { WalletButton } from "./ComponentButton";
 
     const { chains, provider } = configureChains(
         [chain.mainnet, chain.polygon, chain.optimism, chain.arbitrum],
-        [publicProvider()]
+        [alchemyProvider({ apiKey: '0x23534edwasdf3423'}),
+          publicProvider(),]
     );
     
     const { connectors } = getDefaultWallets({
@@ -25,7 +26,7 @@ import { WalletButton } from "./componentButton";
     return(
       <WagmiConfig client={wagmiClient}>
         <RainbowKitProvider chains={chains}>
-          <WalletButton />
+         <WalletButton />
         </RainbowKitProvider>
       </WagmiConfig>
     );
