@@ -144,20 +144,6 @@
 .footer {
   margin-bottom: 200px;
 }
-.log-in-lens-metamask-walle {
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  margin-top: 20px;
-  height: 200px;
-  max-width: 234px;
-  color: rgba(0, 0, 0, 1);
-  font-size: 12.601309776306152px;
-  line-height: 150%;
-  letter-spacing: 0%;
-  text-align: left;
-  font-family: "Roboto", sans-serif;
-}
 .button-container {
   max-width: 300px;
   display: flex;
