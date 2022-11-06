@@ -1,5 +1,6 @@
 import logo from './logo.svg';
 import * as React from 'react';
+import { useState } from 'react';
 import './App.css';
 //import ComponentButton from './components/walletConnect';
 import { useAccount, useSignMessage } from 'wagmi';
@@ -10,7 +11,7 @@ import { chain, configureChains, createClient, WagmiConfig } from "wagmi";
 import { alchemyProvider } from "wagmi/providers/alchemy";
 import { publicProvider } from "wagmi/providers/public";
 import { WalletButton } from "../src/components/ComponentButton";
-
+import { lensProfileData } from './utils/lensProfileData';
 
 
 //import LensLogin from './components/LensLogin'
@@ -33,19 +34,18 @@ const wagmiClient = createClient({
 });
 
 
-
-
-
 async function generateChallenge(address){
   const API_URL = 'https://api.lens.dev/';
   const dataChallenge = await request(API_URL, `query Challenge { challenge(request: { address: "${address}" }) { text }}`)
   return(dataChallenge.challenge.text);
 };
 
+
 function App() {
   const data = useAccount();
   const address = data.address;
   const connected = data.isConnected;
+  const [submited, changeStatus] = useState("")
  
   const verifyData = async () => {
     console.log(data);
@@ -69,11 +69,18 @@ function App() {
 
   };
 
-  const handleSubmit = event => {
-    event.preventDefault();
-    alert('You have submitted the form.')
-  }
-
+   async function handleSubmit(event) {
+      event.preventDefault()
+      const handle = event.currentTarget.elements.handleInput.value;
+      const lensData = await lensProfileData(handle);
+      const ownedBy = lensData.profile.ownedBy;
+      if (ownedBy == address){
+        changeStatus(ownedBy)
+      } else { 
+        return
+      }
+      
+    }
 
   return (
     <WagmiConfig client={wagmiClient}>
@@ -93,11 +100,12 @@ function App() {
           <fieldset>
             <label>
               <p>Lens handle</p>
-              <input name="lens handle" />
+              <input id="handleInput" name="lens handle" />
             </label>
           </fieldset>
           <button type="submit">Submit</button>
         </form>  
+        <p style={{fontSize: '10px'}}>{submited}</p>
       </div>
     </main>
     </RainbowKitProvider>
