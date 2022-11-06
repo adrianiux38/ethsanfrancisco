@@ -7,7 +7,7 @@ import { WalletButton } from "./componentButton";
 
     const { chains, provider } = configureChains(
         [chain.mainnet, chain.polygon, chain.optimism, chain.arbitrum],
-        [alchemyProvider({ alchemyId: process.env.ALCHEMY_ID }), publicProvider()]
+        [publicProvider()]
     );
     
     const { connectors } = getDefaultWallets({
